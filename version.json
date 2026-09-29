@@ -1,0 +1,9 @@
+{
+  "version": "v1.0.0",
+  "version_code": 20260929,
+  "release_date": "2026-09-29",
+  "tarball_size_bytes": 8106605,
+  "title": "v1.0.0 摩派 Lite 移植首发 — Aqara 多屏仪表 + HA 双向联动",
+  "changelog": "1. 摩派 Lite (SSD201, 480×480) 首个正式发布:Aqara S1E 多屏磁贴仪表完整移植,含主题图标/字体/表情全量资源\n2. Home Assistant 双向联动 + 8080 Web 控制台,蜂鸣门铃/接近感应/Si7021 温湿度/背光 pwm1 硬件全适配\n3. 检查更新与 OTA 更新地址迁移至 snailll2/mopad_lite_custom_gui,fetch_https.sh 新增 curl 快速通道(适配无 openssl 固件)\n4. install.sh 全新/增量安装:配置备份还原、telnetd 开机自启固化、零重启热启动",
+  "tarball_url": "https://raw.githubusercontent.com/snailll2/mopad_lite_custom_gui/main/release/mopad_lite_custom_gui_latest.tar.gz"
+}
