@@ -165,6 +165,14 @@ if [ -x /tmp/curl ] && [ ! -x "$TARGET_DIR/curl" ]; then
     cp -f /tmp/curl "$TARGET_DIR/curl" 2>/dev/null && chmod +x "$TARGET_DIR/curl" 2>/dev/null
 fi
 
+# NSS DNS 修复: vendor 把 libnss_*.so.2 放在 /config/wifi,面板无 ld.so.cache/ld.so.conf,
+# 动态进程 getaddrinfo→NSS→dlopen 在 /lib、/usr/lib 默认路径搜不到 → busybox
+# nslookup/ping/wget 报 "bad address"。落位 /lib + 补 nsswitch.conf;缺失才补,幂等。
+for _nss in libnss_dns.so.2 libnss_files.so.2 libnss_db.so.2 libnss_hesiod.so.2; do
+    [ -e "/lib/$_nss" ] || cp "/config/wifi/$_nss" /lib/ 2>/dev/null
+done
+[ -e /etc/nsswitch.conf ] || printf 'hosts: files dns\n' > /etc/nsswitch.conf
+
 # ---------------------------------------------------------------- 8. 零重启热启动
 echo "[6/7] 热启动 GUI + Web + ha_daemon(免重启)..."
 mkdir -p /tmp/www/cgi-bin
