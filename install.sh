@@ -171,7 +171,7 @@ fi
 for _nss in libnss_dns.so.2 libnss_files.so.2 libnss_db.so.2 libnss_hesiod.so.2; do
     [ -e "/lib/$_nss" ] || cp "/config/wifi/$_nss" /lib/ 2>/dev/null
 done
-[ -e /etc/nsswitch.conf ] || printf 'hosts: files dns\n' > /etc/nsswitch.conf
+[ -e /etc/nsswitch.conf ] || echo 'hosts: files dns' > /etc/nsswitch.conf
 
 # ---------------------------------------------------------------- 8. 零重启热启动
 echo "[6/7] 热启动 GUI + Web + ha_daemon(免重启)..."
