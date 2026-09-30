@@ -2,7 +2,7 @@
   "version": "v1.0.1",
   "version_code": 20260930,
   "release_date": "2026-09-30",
-  "tarball_size_bytes": 8108494,
+  "tarball_size_bytes": 9537017,
   "title": "v1.0.1 DNS 解析根因修复 — NSS 模块落位 + 启动自愈",
   "changelog": "1. 修复 busybox nslookup/ping/wget 全部报 'bad address':根因为 vendor 将 libnss_*.so.2 置于 /config/wifi,动态进程 getaddrinfo→NSS→dlopen 在 /lib、/usr/lib 默认路径搜不到模块\n2. 4 个 libnss 模块落位 /lib + 补 /etc/nsswitch.conf(hosts: files dns),start.sh 开机自愈与 install.sh 安装时落位双保险,rootfs(ubifs rw)持久\n3. 上一版内容(v1.0.0):Aqara S1E 多屏磁贴仪表完整移植、HA 双向联动、8080 Web 控制台、OTA 仓库迁移与 curl 快速通道",
   "tarball_url": "https://raw.githubusercontent.com/snailll2/mopad_lite_custom_gui/main/release/mopad_lite_custom_gui_latest.tar.gz"
