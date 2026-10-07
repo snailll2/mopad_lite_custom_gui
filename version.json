@@ -1,9 +1,9 @@
 {
-  "version": "v1.0.1",
-  "version_code": 20260930,
-  "release_date": "2026-09-30",
-  "tarball_size_bytes": 9537017,
-  "title": "v1.0.1 DNS 解析根因修复 — NSS 模块落位 + 启动自愈",
-  "changelog": "1. 修复 busybox nslookup/ping/wget 全部报 'bad address':根因为 vendor 将 libnss_*.so.2 置于 /config/wifi,动态进程 getaddrinfo→NSS→dlopen 在 /lib、/usr/lib 默认路径搜不到模块\n2. 4 个 libnss 模块落位 /lib + 补 /etc/nsswitch.conf(hosts: files dns),start.sh 开机自愈与 install.sh 安装时落位双保险,rootfs(ubifs rw)持久\n3. 上一版内容(v1.0.0):Aqara S1E 多屏磁贴仪表完整移植、HA 双向联动、8080 Web 控制台、OTA 仓库迁移与 curl 快速通道",
+  "version": "v1.0.2",
+  "version_code": 20261007,
+  "release_date": "2026-10-07",
+  "tarball_size_bytes": 9542426,
+  "title": "v1.0.2 触摸音·接近感应·显示与投屏体验版",
+  "changelog": "1. 接近感应唤醒修复并实装:传感器位语义校正+边沿触发,靠近亮屏/空闲不误亮\n2. 触摸提示音接通板载门铃驱动(bell/type),按音调发声\n3. 180° 反转闪烁根治:单固定平面呈递,消除扫描相位碰撞\n4. 滑动修复:对齐原厂 tslib 输入链路(libts.so);首页下拉通知/控制中心恢复\n5. 背光控制对齐原厂 pwm1 duty=亮度;控制中心改环境温度/主板温度/环境湿度布局\n6. Wi-Fi 状态直读 /customer/wpa_supplicant.conf;板载 Si7021 温湿度经 ha_daemon 上屏并推送 HA(sensor.mopad_lite_*)\n7. 全链路品牌统一 魔派Lite/SSD201,移除 HomeKit/绿米云/米家云,设置页精简免滚动\n8. Web 控制台:JPEG 帧流+哈希跳帧、ERR_EMPTY_RESPONSE 根治、继电器面板清理\n9. install 脚本内置静态 curl、telnetd/NSS 自愈固化",
   "tarball_url": "https://raw.githubusercontent.com/snailll2/mopad_lite_custom_gui/main/release/mopad_lite_custom_gui_latest.tar.gz"
 }
