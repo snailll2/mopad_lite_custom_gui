@@ -1,9 +1,9 @@
 {
-  "version": "v1.0.7",
-  "version_code": 20261018,
+  "version": "v1.0.8",
+  "version_code": 20261019,
   "release_date": "2026-10-15",
-  "tarball_size_bytes": 9793220,
-  "title": "v1.0.7 OTA 更新流程修复",
-  "changelog": "1. 修复 OTA 更新后界面仍旧的问题: killall 按 15 字符截断匹配不中长进程名, 旧进程未被终止继续跑旧界面; 改精确按 pid 终止\n2. OTA 完成后重启前主动拉起新版 App/ha_daemon/httpd 兜底, 即使 reboot 未生效也保证运行新版本",
+  "tarball_size_bytes": 9793739,
+  "title": "v1.0.8 OTA 内容落位修复",
+  "changelog": "1. 根治 OTA 只更新版本号、界面/程序不更新: OTA 包为系统树结构, 旧安装逻辑对顶层目录 cp 跳过导致内容从未落位; 改按树同步(customer/usr/etc/data)\n2. 用户配置(layout/卡片/HA 配置等)在 OTA 中保留\n3. 附带 v1.0.7 的 OTA 进程终止修复(长进程名精确 kill)与重启前拉起新版兜底\n注意: 运行 v1.0.7 及更早 api.cgi 的设备执行本次 OTA 仍会只更新版本号, 需重启设备或重新部署一次; 之后一切正常",
   "tarball_url": "https://raw.githubusercontent.com/snailll2/mopad_lite_custom_gui/main/release/mopad_lite_custom_gui_latest.tar.gz"
 }
