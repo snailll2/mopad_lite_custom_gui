@@ -1,9 +1,9 @@
 {
-  "version": "v1.0.4",
-  "version_code": 20261015,
+  "version": "v1.0.5",
+  "version_code": 20261016,
   "release_date": "2026-10-14",
-  "tarball_size_bytes": 9769608,
-  "title": "v1.0.4 布局对齐 + 品牌统一 + 显示根治",
-  "changelog": "1. 磁贴布局: water_heater 内联控件对齐(±主题图无背景/两列同轴/模式行居中), scene/script/button 点击文案不再压名称(垂直居中), 弹窗大字水温真居中\n2. 品牌统一: 全站 魔派Lite / mopad_lite_standalone_app, 芯片显示 SSD201, HA 实体名 mopad_lite_*\n3. 显示根治: 180° 画面旋转与触摸反转闪烁(单平面呈递); 时钟卡设备温湿度(替代无功率采集)\n4. 接入完善: WiFi 状态直读 /customer/wpa_supplicant.conf; Si7021 温湿度经 ha_daemon 推送 HA; 触摸提示音(bell 驱动); 接近感应唤醒; telnetd/httpd 开机自启; HomeKit/绿米云/米家云与继电器全清",
+  "tarball_size_bytes": 9770129,
+  "title": "v1.0.5 密排网格适配 + 磁贴三段式",
+  "changelog": "1. 4x4 密排适配: 时钟高度不足不再绘制温湿度行(消除重叠), 天气控件高度自适应不再溢出格子\n2. button/scene/script 磁贴改自适应等分三段式(图标/名称/点击执行, 段内垂直居中), 缺段自动重分(如 show_name=0 时两等分)\n3. 4x4 及更密网格 1x1 三段式改自适应等分(按展示内容计数, 不再固定比例)\n4. water_heater 弹窗 当前模式/离开模式 行对齐 climate 边距样式(16px 内缩+标签色统一), 触摸热区同步",
   "tarball_url": "https://raw.githubusercontent.com/snailll2/mopad_lite_custom_gui/main/release/mopad_lite_custom_gui_latest.tar.gz"
 }
