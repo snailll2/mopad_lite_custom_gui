@@ -1,9 +1,9 @@
 {
-  "version": "v1.0.8",
-  "version_code": 20261019,
+  "version": "v1.0.9",
+  "version_code": 20261020,
   "release_date": "2026-10-15",
-  "tarball_size_bytes": 9793739,
-  "title": "v1.0.8 OTA 内容落位修复",
-  "changelog": "1. 根治 OTA 只更新版本号、界面/程序不更新: OTA 包为系统树结构, 旧安装逻辑对顶层目录 cp 跳过导致内容从未落位; 改按树同步(customer/usr/etc/data)\n2. 用户配置(layout/卡片/HA 配置等)在 OTA 中保留\n3. 附带 v1.0.7 的 OTA 进程终止修复(长进程名精确 kill)与重启前拉起新版兜底\n注意: 运行 v1.0.7 及更早 api.cgi 的设备执行本次 OTA 仍会只更新版本号, 需重启设备或重新部署一次; 之后一切正常",
+  "tarball_size_bytes": 10196975,
+  "title": "v1.0.9 OTA 平铺自愈(存量设备可 OTA 修复)",
+  "changelog": "1. OTA 包结构改为平铺+系统树并存: 运行老版本(≤v1.0.8)的设备直接在面板上点 OTA 即可自动完成真实更新(此前老安装逻辑只更新版本号不更新内容) — 存量设备再点一次 OTA 即自愈, 无需数据线\n2. 包含 v1.0.8 全部修复(OTA 内容落位/进程终止/重启兜底)\n3. 老设备本次更新成功后, 设备上的更新器即为新版, 之后一切正常",
   "tarball_url": "https://raw.githubusercontent.com/snailll2/mopad_lite_custom_gui/main/release/mopad_lite_custom_gui_latest.tar.gz"
 }
