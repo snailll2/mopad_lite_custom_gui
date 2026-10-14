@@ -1,9 +1,9 @@
 {
-  "version": "v1.0.6",
-  "version_code": 20261017,
+  "version": "v1.0.7",
+  "version_code": 20261018,
   "release_date": "2026-10-15",
-  "tarball_size_bytes": 9793412,
-  "title": "v1.0.6 热水器规格化布局 + 汉字字模",
-  "changelog": "1. 热水器详情弹窗按像素规格重设计: 大字目标温度(白)+圆形加减钮+当前水温(汉字标签字模)+燃烧状态(矢量火焰+燃烧中/待机)\n2. 磁贴内联同步规格风格: 火焰状态行/标签字距/背景透明(不启用背景=真无背景, Web+App 两端)\n3. 汉字字模体系: 固件内置思源黑体生成 hanzi_24/30/48 原生字模, 1:1 绘制零缩放恒锐利\n4. 修复: 减温钮下限(35→30)与实体 min_temp 不符导致减失效; 汉字绘制双重偏移缺字; show_modes 序列化缺失",
+  "tarball_size_bytes": 9793220,
+  "title": "v1.0.7 OTA 更新流程修复",
+  "changelog": "1. 修复 OTA 更新后界面仍旧的问题: killall 按 15 字符截断匹配不中长进程名, 旧进程未被终止继续跑旧界面; 改精确按 pid 终止\n2. OTA 完成后重启前主动拉起新版 App/ha_daemon/httpd 兜底, 即使 reboot 未生效也保证运行新版本",
   "tarball_url": "https://raw.githubusercontent.com/snailll2/mopad_lite_custom_gui/main/release/mopad_lite_custom_gui_latest.tar.gz"
 }
