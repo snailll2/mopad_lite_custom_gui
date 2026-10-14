@@ -1,9 +1,9 @@
 {
-  "version": "v1.0.3",
-  "version_code": 20261014,
+  "version": "v1.0.4",
+  "version_code": 20261015,
   "release_date": "2026-10-14",
-  "tarball_size_bytes": 9768642,
-  "title": "v1.0.3 water_heater 支持 + 编辑器简化 + WiFi 自启根治",
-  "changelog": "1. 新增 water_heater(热水器)设备类型: 磁贴内联控件(当前水温大字/设定温度/大号加减钮, 随空间自适应)与弹窗详情(大字水温+图片加减+模式行+离开模式行), 值取 HA operation_list/away_mode\n2. 4x4 及更密网格的 1x1 卡片改上中下三段(图标/文字/状态), 每段垂直居中, 超宽自动截断为..; 不支持内联控件避免重叠\n3. Web 编辑器: '删除此组件'移至左侧保存行下方; 移除'网格位置与尺寸'与'触控微调控制器'; '屏幕快捷预设'默认折叠\n4. WiFi 开机自启根治: /net/wifi/enable 标志自愈(kvset)+start.sh 预拉 supplicant(-B+自动 DHCP), 不再受标志关闭影响",
+  "tarball_size_bytes": 9769608,
+  "title": "v1.0.4 布局对齐 + 品牌统一 + 显示根治",
+  "changelog": "1. 磁贴布局: water_heater 内联控件对齐(±主题图无背景/两列同轴/模式行居中), scene/script/button 点击文案不再压名称(垂直居中), 弹窗大字水温真居中\n2. 品牌统一: 全站 魔派Lite / mopad_lite_standalone_app, 芯片显示 SSD201, HA 实体名 mopad_lite_*\n3. 显示根治: 180° 画面旋转与触摸反转闪烁(单平面呈递); 时钟卡设备温湿度(替代无功率采集)\n4. 接入完善: WiFi 状态直读 /customer/wpa_supplicant.conf; Si7021 温湿度经 ha_daemon 推送 HA; 触摸提示音(bell 驱动); 接近感应唤醒; telnetd/httpd 开机自启; HomeKit/绿米云/米家云与继电器全清",
   "tarball_url": "https://raw.githubusercontent.com/snailll2/mopad_lite_custom_gui/main/release/mopad_lite_custom_gui_latest.tar.gz"
 }
