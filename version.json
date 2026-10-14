@@ -1,9 +1,9 @@
 {
-  "version": "v1.0.5",
-  "version_code": 20261016,
-  "release_date": "2026-10-14",
-  "tarball_size_bytes": 9770129,
-  "title": "v1.0.5 密排网格适配 + 磁贴三段式",
-  "changelog": "1. 4x4 密排适配: 时钟高度不足不再绘制温湿度行(消除重叠), 天气控件高度自适应不再溢出格子\n2. button/scene/script 磁贴改自适应等分三段式(图标/名称/点击执行, 段内垂直居中), 缺段自动重分(如 show_name=0 时两等分)\n3. 4x4 及更密网格 1x1 三段式改自适应等分(按展示内容计数, 不再固定比例)\n4. water_heater 弹窗 当前模式/离开模式 行对齐 climate 边距样式(16px 内缩+标签色统一), 触摸热区同步",
+  "version": "v1.0.6",
+  "version_code": 20261017,
+  "release_date": "2026-10-15",
+  "tarball_size_bytes": 9793412,
+  "title": "v1.0.6 热水器规格化布局 + 汉字字模",
+  "changelog": "1. 热水器详情弹窗按像素规格重设计: 大字目标温度(白)+圆形加减钮+当前水温(汉字标签字模)+燃烧状态(矢量火焰+燃烧中/待机)\n2. 磁贴内联同步规格风格: 火焰状态行/标签字距/背景透明(不启用背景=真无背景, Web+App 两端)\n3. 汉字字模体系: 固件内置思源黑体生成 hanzi_24/30/48 原生字模, 1:1 绘制零缩放恒锐利\n4. 修复: 减温钮下限(35→30)与实体 min_temp 不符导致减失效; 汉字绘制双重偏移缺字; show_modes 序列化缺失",
   "tarball_url": "https://raw.githubusercontent.com/snailll2/mopad_lite_custom_gui/main/release/mopad_lite_custom_gui_latest.tar.gz"
 }
