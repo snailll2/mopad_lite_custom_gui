@@ -1,9 +1,9 @@
 {
-  "version": "v1.0.9",
-  "version_code": 20261020,
+  "version": "v1.0.10",
+  "version_code": 20261021,
   "release_date": "2026-10-15",
-  "tarball_size_bytes": 10196975,
-  "title": "v1.0.9 OTA 平铺自愈(存量设备可 OTA 修复)",
-  "changelog": "1. OTA 包结构改为平铺+系统树并存: 运行老版本(≤v1.0.8)的设备直接在面板上点 OTA 即可自动完成真实更新(此前老安装逻辑只更新版本号不更新内容) — 存量设备再点一次 OTA 即自愈, 无需数据线\n2. 包含 v1.0.8 全部修复(OTA 内容落位/进程终止/重启兜底)\n3. 老设备本次更新成功后, 设备上的更新器即为新版, 之后一切正常",
+  "tarball_size_bytes": 10197510,
+  "title": "v1.0.10 OTA 解包溢出修复",
+  "changelog": "1. 根治 OTA 大文件截断(界面残缺/switchTab 报错): OTA 解包到 /tmp(24.8MB tmpfs)时被 70MB 全量内容撑爆, index.html 等大文件写到块边界被截断; 改为只解程序/网页/配置树(设备主题已就位无需随 OTA 推)\n2. 含 v1.0.9 全部修复(平铺自愈/内容落位/进程终止/重启兜底)\n3. 已在实测设备验证: OTA 后 index.html 完整 405KB(此前 258KB 截断)",
   "tarball_url": "https://raw.githubusercontent.com/snailll2/mopad_lite_custom_gui/main/release/mopad_lite_custom_gui_latest.tar.gz"
 }
