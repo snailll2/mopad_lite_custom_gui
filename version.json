@@ -1,9 +1,9 @@
 {
-  "version": "v1.0.10",
-  "version_code": 20261021,
-  "release_date": "2026-10-15",
-  "tarball_size_bytes": 10197510,
-  "title": "v1.0.10 OTA 解包溢出修复",
-  "changelog": "1. 根治 OTA 大文件截断(界面残缺/switchTab 报错): OTA 解包到 /tmp(24.8MB tmpfs)时被 70MB 全量内容撑爆, index.html 等大文件写到块边界被截断; 改为只解程序/网页/配置树(设备主题已就位无需随 OTA 推)\n2. 含 v1.0.9 全部修复(平铺自愈/内容落位/进程终止/重启兜底)\n3. 已在实测设备验证: OTA 后 index.html 完整 405KB(此前 258KB 截断)",
+  "version": "v1.0.11",
+  "version_code": 20261022,
+  "release_date": "2026-10-16",
+  "tarball_size_bytes": 10205458,
+  "title": "v1.0.11 选择器与无线开关",
+  "changelog": "1. 新增 select/input_select 选择器实体: 磁贴显示当前值+点击弹窗选项列表, 点选项行下发 select_option(即回显+磁贴乐观同步); 修复 input_select 服务域写死导致\"切了值不变\"的问题\n2. 新增 Wi-Fi 无线开关: 设置页顶部开关卡, 关=停 supplicant+wlan0 down, 开=自动重试拉起+DHCP; 状态持久化 /customer/wifi_enable, start.sh 开机按它门控(缺省=开)\n3. 含 v1.0.10 全部修复(OTA 解包溢出/平铺自愈等)",
   "tarball_url": "https://raw.githubusercontent.com/snailll2/mopad_lite_custom_gui/main/release/mopad_lite_custom_gui_latest.tar.gz"
 }
