@@ -1,9 +1,9 @@
 {
-  "version": "v1.0.13",
-  "version_code": 20261024,
+  "version": "v1.0.14",
+  "version_code": 20261025,
   "release_date": "2026-10-16",
-  "tarball_size_bytes": 10207004,
-  "title": "v1.0.13 更新提醒增强",
-  "changelog": "1. 关于固件页新增「自动检测更新」开关, 可关闭自动检查\n2. 更新弹窗新增「跳过该版本」与「稍后更新」(当天不再提醒)\n3. 含 v1.0.12 全部修复(OTA 安装脚本语法错误根治)",
+  "tarball_size_bytes": 10209969,
+  "title": "v1.0.14 燃烧状态精准显示",
+  "changelog": "1. 热水器新增可选外部燃烧传感器 (flame_sensor/flame_attribute, 默认 burning:true/false)\n2. 设定温度恒白色显示 (不随开关状态置灰)\n3. 修复 ha_daemon 全量实体缓存 (64KB 截断/周期拉取)\n4. 含 v1.0.13 全部功能(更新提醒增强等)",
   "tarball_url": "https://raw.githubusercontent.com/snailll2/mopad_lite_custom_gui/main/release/mopad_lite_custom_gui_latest.tar.gz"
 }
