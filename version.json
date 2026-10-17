@@ -1,9 +1,9 @@
 {
-  "version": "v1.0.12",
-  "version_code": 20261023,
+  "version": "v1.0.13",
+  "version_code": 20261024,
   "release_date": "2026-10-16",
-  "tarball_size_bytes": 10205509,
-  "title": "v1.0.12 OTA 安装脚本修复",
-  "changelog": "1. 根治 OTA 卡 80%/90%: 生成的 do_ota.sh 内含一行未加 # 的注释导致 shell 语法错误, 安装阶段脚本中止(下载/校验正常但永不安装)\n2. 含 v1.0.11 全部功能(select 选择器/WiFi 无线开关等)",
+  "tarball_size_bytes": 10207004,
+  "title": "v1.0.13 更新提醒增强",
+  "changelog": "1. 关于固件页新增「自动检测更新」开关, 可关闭自动检查\n2. 更新弹窗新增「跳过该版本」与「稍后更新」(当天不再提醒)\n3. 含 v1.0.12 全部修复(OTA 安装脚本语法错误根治)",
   "tarball_url": "https://raw.githubusercontent.com/snailll2/mopad_lite_custom_gui/main/release/mopad_lite_custom_gui_latest.tar.gz"
 }
