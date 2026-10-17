@@ -68,6 +68,18 @@ done
 
 本地版本信息位于 `/data/scripts/version.json`，与本仓库根目录同名文件保持同步。
 
+### ⚠️ OTA 卡 80%/90% 的设备请用离线升级
+
+**v1.0.9 ~ v1.0.11 的 OTA 安装脚本存在缺陷**（生成的安装脚本含语法错误），这些版本在线升级会**永远卡在 80%/90%**，无法完成。
+
+受影响设备请使用 **[离线 OTA 工具](tools/offline_ota/README.md)**（`tools/offline_ota/`，Windows/macOS/Linux 三平台）：
+
+1. 设备断电重启，回到旧版正常界面；
+2. 在电脑上下载 [release 固件包](release/mopad_lite_custom_gui_latest.tar.gz) 与工具；
+3. 运行 `mopad_offline_ota -ip 面板IP`，固件从本机直推本地安装（保留全部用户配置）。
+
+v1.0.12 及之后 OTA 修复版固件的设备不受影响，在线升级照常可用。
+
 ---
 
 ## 📦 产物清单（`release/`）
