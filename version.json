@@ -1,9 +1,9 @@
 {
-  "version": "v1.0.15",
-  "version_code": 20261026,
-  "release_date": "2026-10-16",
-  "tarball_size_bytes": 10210202,
-  "title": "v1.0.15 编辑器修复",
-  "changelog": "1. 修复热水器「燃烧状态精准显示」保存后刷新丢失: 编辑器加载侧白名单补齐 flame_sensor/flame_attribute\n2. 输入框补 onchange 绑定, 填写即写入组件配置\n3. 含 v1.0.14 全部功能(外部燃烧传感器/设定温度恒白等)",
+  "version": "v1.0.16",
+  "version_code": 20261027,
+  "release_date": "2026-10-18",
+  "tarball_size_bytes": 10179486,
+  "title": "v1.0.16 燃烧状态实时化",
+  "changelog": "1. 燃烧状态实时化: flame_sensor 绑定实体纳入 WebSocket 推送, HA 属性变化亚秒级上屏 (原全量轮询最坏 ~40s 滞后)\n2. 根治 HTTP 拉取 body 偏移 bug: 单实体状态文件开头被斩 4 字节(存量问题), chunked 响应分支同步修复\n3. 移除 fetchlog 调试残留(此前每次拉取都追加写 flash, 加速 NAND 磨损)\n4. 含 v1.0.15 全部功能(编辑器 flame 字段白名单等)",
   "tarball_url": "https://raw.githubusercontent.com/snailll2/mopad_lite_custom_gui/main/release/mopad_lite_custom_gui_latest.tar.gz"
 }
