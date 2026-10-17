@@ -1,17 +1,23 @@
 // mopad_offline_ota.go — 摩派Lite 离线 OTA 工具 (Windows/macOS/Linux)
 //
 // 用途: 不走 GitHub 在线 OTA, 从本机把固件 tarball 直推面板并按修复版
-//       do_ota 逻辑本地安装。专治 OTA 卡 80%/90% 死锁的设备(旧版 do_ota.sh
-//       语法错误 bug)以及无外网/GitHub 不通的环境。
+//
+//	do_ota 逻辑本地安装。专治 OTA 卡 80%/90% 死锁的设备(旧版 do_ota.sh
+//	语法错误 bug)以及无外网/GitHub 不通的环境。
 //
 // 用法:
-//   mopad_offline_ota.exe -ip 192.168.50.223 [-tar 固件.tar.gz] [-verjson version.json]
+//
+//	mopad_offline_ota.exe -ip 192.168.50.223 [-tar 固件.tar.gz] [-verjson version.json]
 //
 // 流程: telnet(免登录root) → wget tarball + md5 校验 → 解包落位(保留用户配置)
-//       → 同步 /tmp/www → 覆盖 version.json → 重启进程 → HTTP 验证版本
+//
+//	→ 同步 /tmp/www → 覆盖 version.json → 重启进程 → HTTP 验证版本
 package main
 
 import (
+	"archive/tar"
+	"bytes"
+	"compress/gzip"
 	"crypto/md5"
 	"encoding/base64"
 	"encoding/hex"
@@ -52,15 +58,49 @@ echo 95 > /tmp/ota_progress_offline
 echo INSTALL_OK
 `
 
-// v1.0.12 version.json 缺省值 (可用 -verjson 覆盖)
-const defaultVerJSON = `{
-  "version": "v1.0.12",
-  "version_code": 20261023,
-  "release_date": "2026-10-16",
-  "tarball_size_bytes": 10205509,
-  "title": "v1.0.12 OTA 安装脚本修复",
-  "tarball_url": "https://raw.githubusercontent.com/snailll2/mopad_lite_custom_gui/main/release/mopad_lite_custom_gui_latest.tar.gz"
-}`
+// 从固件 tarball 里提取 version.json (customer/aqgui/scripts/version.json 优先, 否则根)
+func extractVerJSONFromTarball(tarBytes []byte) ([]byte, string, error) {
+	gz, err := gzip.NewReader(bytes.NewReader(tarBytes))
+	if err != nil {
+		return nil, "", err
+	}
+	defer gz.Close()
+	tr := tar.NewReader(gz)
+	var fallback []byte
+	ver := ""
+	for {
+		hd, err := tr.Next()
+		if err == io.EOF {
+			break
+		}
+		if err != nil {
+			return nil, "", err
+		}
+		name := strings.TrimPrefix(hd.Name, "./")
+		if strings.HasPrefix(strings.TrimPrefix(name, "./"), "._") {
+			continue // macOS AppleDouble 垃圾
+		}
+		if strings.HasSuffix(name, "version.json") {
+			body, err := io.ReadAll(tr)
+			if err != nil {
+				return nil, "", err
+			}
+			var v struct {
+				Version string `json:"version"`
+			}
+			json.Unmarshal(body, &v)
+			if strings.Contains(name, "customer/") {
+				return body, v.Version, nil
+			}
+			fallback = body
+			ver = v.Version
+		}
+	}
+	if fallback != nil {
+		return fallback, ver, nil
+	}
+	return nil, "", io.ErrUnexpectedEOF
+}
 
 // ---------- 极简 telnet(raw shell) 客户端: 免登录 telnetd -l /bin/sh ----------
 type tel struct {
@@ -168,7 +208,7 @@ func main() {
 	ip := flag.String("ip", "192.168.50.143", "面板 IP")
 	port := flag.String("port", "23", "面板 telnet 端口")
 	tarPath := flag.String("tar", "mopad_lite_custom_gui_latest.tar.gz", "固件 tarball 路径")
-	verJSON := flag.String("verjson", "", "version.json 路径 (缺省用内置 v1.0.12)")
+	verJSON := flag.String("verjson", "", "version.json 路径 (缺省从固件 tarball 内提取)")
 	httpPort := flag.Int("httpport", 18090, "本机临时 HTTP 端口")
 	flag.Parse()
 
@@ -183,8 +223,11 @@ func main() {
 	md5Tar := hex.EncodeToString(sum[:])
 	fmt.Printf("[*] 固件:   %s (%d B, md5 %s)\n", *tarPath, len(tarBytes), md5Tar)
 
-	// 2) version.json (内置缺省 或 -verjson)
-	verBytes := []byte(defaultVerJSON)
+	// 2) version.json: 优先从固件 tarball 内提取 (与固件版本永远一致), -verjson 可覆盖
+	verBytes, tarVer, verr := extractVerJSONFromTarball(tarBytes)
+	if verr != nil || verBytes == nil {
+		failf("tarball 内未找到 version.json (%v); 可用 -verjson 手动指定", verr)
+	}
 	if *verJSON != "" {
 		if vb, err := os.ReadFile(*verJSON); err == nil {
 			verBytes = vb
@@ -195,6 +238,9 @@ func main() {
 	}
 	json.Unmarshal(verBytes, &verObj)
 	tgtVer := verObj.Version
+	if tgtVer == "" {
+		tgtVer = tarVer
+	}
 	fmt.Printf("[*] 目标:   %s\n", tgtVer)
 
 	// 3) 本机临时 HTTP 服务 (面板 wget 拉固件)
